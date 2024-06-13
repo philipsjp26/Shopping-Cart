@@ -1,0 +1,17 @@
+app:
+  name: "APP_NAME"
+  port: APP_PORT
+  env: "dev" # development || staging || production
+database:
+  host: "DB_HOST"
+  port: DB_PORT
+  username: "DB_USERNAME"
+  password: "DB_PASSWORD"
+  name: "DB_NAME"
+  driver: "DB_DRIVER" # postgres / mysql / clickhouse
+  charset: "utf8"
+  timezone: "Asia/Jakarta"
+  read_timeout: 15 # second
+  write_timeout: 15 # second
+  max_idle_conn: 10
+  max_open_conn: 10
