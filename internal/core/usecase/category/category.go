@@ -12,14 +12,15 @@ import (
 )
 
 type categoryServices struct {
-	repo repository.ProductCategories
+	repo        repository.ProductCategories
+	repoProduct repository.ProductRepository
 }
 
-func NewCateogryServices(r repository.ProductCategories) service.ProductCategoryServices {
-	return &categoryServices{repo: r}
+func NewCateogryServices(r repository.ProductCategories, productRepo repository.ProductRepository) service.ProductCategoryServices {
+	return &categoryServices{repo: r, repoProduct: productRepo}
 }
 
-func (cs *categoryServices) Create(req model.ProductCategoryRequest) *common.BaseResponse {
+func (cs *categoryServices) Create(req model.Category) *common.BaseResponse {
 	var (
 		baseResponse common.BaseResponse
 	)
@@ -50,7 +51,7 @@ func (cs *categoryServices) Create(req model.ProductCategoryRequest) *common.Bas
 	return &baseResponse
 }
 
-func (cs *categoryServices) ListProducts() *common.BaseResponse {
+func (cs *categoryServices) RetrieveCategories() *common.BaseResponse {
 	var (
 		response common.BaseResponse
 	)

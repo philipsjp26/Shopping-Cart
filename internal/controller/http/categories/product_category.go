@@ -1,10 +1,11 @@
-package products_category
+package categories
 
 import (
 	"go_playground/internal/core/common"
 	"go_playground/internal/core/model"
 	"go_playground/internal/core/port/service"
 	"net/http"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -12,6 +13,7 @@ import (
 type ProductCategoryController interface {
 	RetrieveAll(c *fiber.Ctx) error
 	Create(c *fiber.Ctx) error
+	RetrieveProductsOfCategory(c *fiber.Ctx) error
 }
 
 type categoryController struct {
@@ -27,7 +29,7 @@ func (cc *categoryController) Create(c *fiber.Ctx) error {
 		err      error
 		response common.BaseResponse
 	)
-	param := new(model.ProductCategoryRequest)
+	param := new(model.Category)
 	if err = c.BodyParser(param); err != nil {
 		response.Code = http.StatusBadRequest
 		response.Message = "bad request"
@@ -41,4 +43,18 @@ func (cc *categoryController) Create(c *fiber.Ctx) error {
 	}
 	r := cc.categoryService.Create(*param)
 	return c.Status(r.Code).JSON(r)
+}
+func (cc *categoryController) RetrieveProductsOfCategory(c *fiber.Ctx) error {
+	var (
+		response common.BaseResponse
+	)
+	id := c.Params("category_id")
+	if id == "" {
+		response.Code = http.StatusUnprocessableEntity
+		response.Message = "id is empty"
+		return c.Status(response.Code).JSON(response)
+	}
+	productId, _ := strconv.Atoi(id)
+	result := cc.categoryService.RetrieveProducts(productId)
+	return c.Status(result.Code).JSON(result)
 }

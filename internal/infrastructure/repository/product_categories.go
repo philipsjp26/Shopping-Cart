@@ -14,7 +14,16 @@ type productCategoriesRepo struct {
 func NewProductCategoryRepo(db *gorm.DB) repository.ProductCategories {
 	return &productCategoriesRepo{db: db}
 }
+func (p *productCategoriesRepo) FindProductsCategory(id int) ([]entity.Products, error) {
+	var (
+		dest []entity.Products
+	)
+	if err := p.db.Where("category_id = ?", id).Find(&dest).Error; err != nil {
+		return nil, err
+	}
+	return dest, nil
 
+}
 func (p *productCategoriesRepo) Store(param entity.Categories) error {
 	if err := p.db.Create(&param).Error; err != nil {
 		return err

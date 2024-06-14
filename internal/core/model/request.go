@@ -20,7 +20,7 @@ type (
 		Username string `json:"username"`
 		Password string `json:"password"`
 	}
-	ProductCategoryRequest struct {
+	Category struct {
 		Name string `json:"name"`
 	}
 	ProductCategoryQuery struct {
@@ -37,7 +37,7 @@ type (
 	}
 )
 
-func (v ProductCategoryRequest) Validate() error {
+func (v Category) Validate() error {
 	return validation.ValidateStruct(&v,
 		validation.Field(&v.Name, validation.Required.Error("product name is required")),
 	)
