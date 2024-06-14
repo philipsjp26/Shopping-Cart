@@ -22,3 +22,14 @@ func (sc *shoppingCartRepo) Create(model entity.ShoppingCart) (int, error) {
 
 	return int(model.ID), nil
 }
+
+func (sc *shoppingCartRepo) FindOne(model entity.ShoppingCart) (*entity.ShoppingCart, error) {
+	var (
+		dest entity.ShoppingCart
+	)
+	err := sc.db.Where(&model).First(&dest).Error
+	if err == gorm.ErrRecordNotFound {
+		return nil, nil
+	}
+	return &dest, err
+}
