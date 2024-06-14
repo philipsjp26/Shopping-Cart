@@ -5,7 +5,7 @@ import (
 	"go_playground/internal/core/model"
 )
 
-type ProductServices interface {
+type ProductCategoryServices interface {
 	ListProducts() *common.BaseResponse
 	Create(req model.ProductCategoryRequest) *common.BaseResponse
 }

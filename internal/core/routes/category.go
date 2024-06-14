@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"go_playground/internal/controller/http/products"
+	"go_playground/internal/controller/http/products_category"
 	"go_playground/internal/core/usecase/category"
 	"go_playground/internal/infrastructure/repository"
 
@@ -22,7 +22,8 @@ func SetupCategory(routes fiber.Router, db *gorm.DB) {
 	categoryServices := category.NewCateogryServices(categoryRepo)
 
 	// controller
-	categoryController := products.NewCategoryController(categoryServices)
+
+	categoryController := products_category.NewCategoryController(categoryServices)
 
 	categories.Post("/create", categoryController.Create)
 	categories.Get("", categoryController.RetrieveAll)

@@ -1,4 +1,4 @@
-package products
+package products_category
 
 import (
 	"go_playground/internal/core/common"
@@ -15,10 +15,10 @@ type ProductCategoryController interface {
 }
 
 type categoryController struct {
-	categoryService service.ProductServices
+	categoryService service.ProductCategoryServices
 }
 
-func NewCategoryController(sv service.ProductServices) ProductCategoryController {
+func NewCategoryController(sv service.ProductCategoryServices) ProductCategoryController {
 	return &categoryController{categoryService: sv}
 }
 

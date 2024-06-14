@@ -15,7 +15,7 @@ type categoryServices struct {
 	repo repository.ProductCategories
 }
 
-func NewCateogryServices(r repository.ProductCategories) service.ProductServices {
+func NewCateogryServices(r repository.ProductCategories) service.ProductCategoryServices {
 	return &categoryServices{repo: r}
 }
 

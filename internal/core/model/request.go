@@ -28,6 +28,13 @@ type (
 		Id   int    `json:"id,omitempty"`
 		Name string `json:"omitempty"`
 	}
+	ProductRequest struct {
+		CategoryId  int     `json:"category_id"`
+		Name        string  `json:"name"`
+		Description string  `json:"description,omitempty"`
+		Quantity    int     `json:"quantity"`
+		Price       float64 `json:"price"`
+	}
 )
 
 func (v ProductCategoryRequest) Validate() error {

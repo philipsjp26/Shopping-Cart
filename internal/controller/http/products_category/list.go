@@ -1,4 +1,4 @@
-package products
+package products_category
 
 import "github.com/gofiber/fiber/v2"
 
