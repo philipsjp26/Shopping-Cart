@@ -16,6 +16,19 @@ func NewCustomerRepo(db *gorm.DB) repository.CustomerRepository {
 	return &customerRepo{db: db}
 }
 
+func (c *customerRepo) FindCustomerCartProducts(customer entity.Customers) ([]entity.CustomerCartProducts, error) {
+	var dest []entity.CustomerCartProducts
+	cols := []string{"c2.shopping_cart_id", "p.name", "p.description", "p.quantity", "p.price", "p.created_at"}
+	err := c.db.Model(&customer).Select(cols).
+		Joins("LEFT JOIN shopping_carts sc on sc.customer_id = customers.id").
+		Joins("LEFT JOIN carts c2 ON c2.shopping_cart_id = sc.id").
+		Joins("LEFT JOIN products p ON  p.id = c2.product_id").Scan(&dest).Error
+	if err != nil {
+		return nil, err
+	}
+	return dest, nil
+}
+
 func (c *customerRepo) FindAll(ctx context.Context) ([]entity.Customers, error) {
 	var (
 		dest []entity.Customers

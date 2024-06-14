@@ -10,6 +10,7 @@ type CustomerController interface {
 	RetrieveAllCustomers(c *fiber.Ctx) error
 	RegisterCustomer(c *fiber.Ctx) error
 	LoginCustomer(ct *fiber.Ctx) error
+	CartProducts(ct *fiber.Ctx) error
 }
 
 type customerController struct {

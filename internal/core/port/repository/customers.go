@@ -13,4 +13,5 @@ type CustomerRepository interface {
 	FindAll(ctx context.Context) ([]entity.Customers, error)
 	FindOne(ctx context.Context, customer entity.Customers) (*entity.Customers, error)
 	Store(ctx context.Context, customer entity.Customers) error
+	FindCustomerCartProducts(customer entity.Customers) ([]entity.CustomerCartProducts, error)
 }

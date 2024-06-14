@@ -15,4 +15,16 @@ type (
 		Name      string    `json:"name"`
 		CreatedAt time.Time `json:"created_at"`
 	}
+	CustomerCartProductsResponse struct {
+		Carts []Carts `json:"carts"`
+	}
+	Carts struct {
+		Id       int             `json:"id"`
+		Products []ProductDetail `json:"products"`
+	}
+
+	ProductDetail struct {
+		Name        string `json:"name"`
+		Description string `json:"Description"`
+	}
 )

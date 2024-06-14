@@ -19,6 +19,7 @@ func SetupCustomerRoutes(routes fiber.Router, db *gorm.DB) {
 	// repository
 	customerRepo := repository.NewCustomerRepo(db)
 	accessTokenRepo := repository.NewAccessTokenRepo(db)
+
 	// end of line repository
 
 	// services
@@ -41,5 +42,6 @@ func SetupCustomerRoutes(routes fiber.Router, db *gorm.DB) {
 
 	v1Cust.Post("/register", c.RegisterCustomer)
 	v1Cust.Post("/login", c.LoginCustomer)
+	v1Cust.Get("/carts", middleware.Authorize(accessTokenRepo), c.CartProducts)
 
 }

@@ -14,3 +14,12 @@ type Customers struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
+
+type CustomerCartProducts struct {
+	ShoppingCartId int
+	Name           string
+	Description    string
+	Quantity       int
+	Price          float64
+	CreatedAt      time.Time
+}

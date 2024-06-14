@@ -9,4 +9,5 @@ type CustomerServices interface {
 	GetAllCustomer() *common.BaseResponse
 	CreateCustomer(param model.CustomerRegisterRequest) *common.BaseResponse
 	Login(param model.CustomerLoginRequest) *common.BaseResponse
+	GetCartOfProducts(custId int) *common.BaseResponse
 }

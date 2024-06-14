@@ -23,3 +23,25 @@ func EntityToDTOCustomers(result []entity.Customers) []model.CustomersDetail {
 	}
 	return customers
 }
+
+func EntityCustomerCartProductsToCarts(result []entity.CustomerCartProducts) model.CustomerCartProductsResponse {
+	x := model.CustomerCartProductsResponse{}
+	cartMap := make(map[int][]model.ProductDetail)
+
+	for _, v := range result {
+		product := model.ProductDetail{
+			Name:        v.Name,
+			Description: v.Description,
+		}
+		cartMap[v.ShoppingCartId] = append(cartMap[v.ShoppingCartId], product)
+	}
+
+	for cartID, products := range cartMap {
+		x.Carts = append(x.Carts, model.Carts{
+			Id:       cartID,
+			Products: products,
+		})
+	}
+
+	return x
+}
