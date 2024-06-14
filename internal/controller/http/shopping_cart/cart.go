@@ -14,6 +14,7 @@ import (
 type CartController interface {
 	Create(c *fiber.Ctx) error
 	AddProducts(c *fiber.Ctx) error
+	RemoveItemFromCart(ct *fiber.Ctx) error
 }
 type cartController struct {
 	sv     service.ShoppingCartService
@@ -56,4 +57,25 @@ func (cart *cartController) AddProducts(c *fiber.Ctx) error {
 	param.CartId = id
 	res := cart.cartSv.AddProductsCart(*param)
 	return c.Status(res.Code).JSON(res)
+}
+
+func (cart *cartController) RemoveItemFromCart(ct *fiber.Ctx) error {
+	var (
+		err      error
+		response common.BaseResponse
+	)
+	param := new(model.RemoveProductFromCart)
+	if err = ct.BodyParser(param); err != nil {
+		response.Code = http.StatusBadRequest
+		response.Message = "bad request"
+		return ct.Status(response.Code).JSON(response)
+	}
+	if err = param.Validate(); err != nil {
+		response.Code = http.StatusUnprocessableEntity
+		response.Message = common.RespValidationError
+		response.Errors = err
+		return ct.Status(response.Code).JSON(response)
+	}
+	res := cart.cartSv.RemoveItem(*param)
+	return ct.Status(res.Code).JSON(res)
 }

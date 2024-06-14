@@ -7,4 +7,5 @@ import (
 
 type CartService interface {
 	AddProductsCart(req model.CartRequest) *common.BaseResponse
+	RemoveItem(req model.RemoveProductFromCart) *common.BaseResponse
 }

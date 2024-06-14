@@ -22,6 +22,27 @@ func (cart *cartRepo) Create(param entity.Cart) error {
 
 }
 
+func (cart *cartRepo) Delete(param *entity.Cart, bulk ...entity.Cart) error {
+	var (
+		err error
+	)
+	if len(bulk) > 0 {
+		for _, cartItem := range bulk {
+			err := cart.db.Where("product_id = ? AND shopping_cart_id = ?", cartItem.ProductId, cartItem.ShoppingCartId).Delete(&entity.Cart{}).Error
+			if err != nil {
+				return err
+			}
+		}
+	} else {
+		err = cart.db.Delete(&param).Error
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (cart *cartRepo) BatchCreate(param []entity.Cart) error {
 	tx := cart.db.Begin()
 	if tx.Error != nil {

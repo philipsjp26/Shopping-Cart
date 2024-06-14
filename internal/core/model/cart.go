@@ -15,7 +15,18 @@ type (
 		Id       int `json:"id"`
 		Quantity int `json:"quantity"`
 	}
+	RemoveProductFromCart struct {
+		CartId    int   `json:"cart_id"`
+		ProductId []int `json:"product_ids"`
+	}
 )
+
+func (p RemoveProductFromCart) Validate() error {
+	return validation.ValidateStruct(&p,
+		validation.Field(&p.CartId, validation.Required),
+		validation.Field(&p.ProductId, validation.Required),
+	)
+}
 
 func (p Product) Validate() error {
 	return validation.ValidateStruct(&p,

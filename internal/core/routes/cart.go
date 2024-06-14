@@ -30,4 +30,5 @@ func SetupCart(routes fiber.Router, db *gorm.DB) {
 
 	carts.Post("", middleware.Authorize(accessTokenRepo), cartController.Create)
 	carts.Post("/:cart_id", cartController.AddProducts)
+	carts.Delete("/items", cartController.RemoveItemFromCart)
 }
