@@ -8,6 +8,11 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
+type Customer struct {
+	Id       int
+	Username string
+}
+
 type UserClaims struct {
 	jwt.StandardClaims
 	Id       int    `json:"id"`
@@ -31,7 +36,7 @@ func GenerateRefreshToken() (string, error) {
 	return refreshToken.SignedString([]byte("SECRET_KEY"))
 }
 
-func ParseAccessToken(accessToken string) (*UserClaims, error) {
+func ParseAccessToken(accessToken string) (*Customer, error) {
 	to, err := jwt.Parse(accessToken, func(t *jwt.Token) (interface{}, error) {
 
 		if t.Method != jwt.SigningMethodHS256 {
@@ -50,19 +55,16 @@ func ParseAccessToken(accessToken string) (*UserClaims, error) {
 		return nil, errors.New("invalid claims")
 	}
 
-	exp, _ := claims["exp"].(int64)
-	id, _ := claims["id"].(int)
+	id, _ := claims["id"].(float64)
+
 	if !ok {
 		return nil, errors.New("invalid id claim")
 	}
 	username, _ := claims["username"].(string)
 
-	user := &UserClaims{
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: exp,
-		},
+	user := &Customer{
 		Username: username,
-		Id:       id,
+		Id:       int(id),
 	}
 	return user, nil
 

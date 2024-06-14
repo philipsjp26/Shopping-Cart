@@ -19,5 +19,6 @@ func Runner() {
 
 	routes.SetupCustomerRoutes(server, db)
 	routes.SetupCategory(server, db)
+	routes.SetupCart(server, db)
 	app.Start()
 }

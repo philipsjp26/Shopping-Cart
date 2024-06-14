@@ -5,6 +5,7 @@ const (
 )
 
 const (
-	RespValidationError = "VALIDATION-ERROR"
-	RespDataNotFound    = "DATA-NOT-FOUND"
+	RespValidationError    = "VALIDATION-ERROR"
+	RespDataNotFound       = "DATA-NOT-FOUND"
+	RespInternalServerEror = "INTERNAL-SERVER-ERROR"
 )

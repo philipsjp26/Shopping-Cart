@@ -4,6 +4,9 @@ CREATE TABLE IF NOT EXISTS carts (
     id serial primary key,
     product_id bigint not null,
     shopping_cart_id bigint not null,
+    quantity bigint not null,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     constraint fk_carts_products foreign key (product_id) references products(id),
     constraint fk_shopping_carts_carts foreign key (shopping_cart_id) references shopping_carts(id)
 )
