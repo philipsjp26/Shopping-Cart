@@ -7,4 +7,5 @@ import (
 
 type AccessTokenRepository interface {
 	Store(ctx context.Context, param entity.AccessToken) error
+	FindOne(param entity.AccessToken) (*entity.AccessToken, error)
 }

@@ -3,6 +3,7 @@ package routes
 import (
 	"go_playground/internal/controller/http"
 	customerController "go_playground/internal/controller/http/customers"
+	"go_playground/internal/core/middleware"
 	"go_playground/internal/core/usecase"
 	"go_playground/internal/core/usecase/customers"
 	"go_playground/internal/infrastructure/repository"
@@ -36,7 +37,7 @@ func SetupCustomerRoutes(routes fiber.Router, db *gorm.DB) {
 	// routes
 
 	v1Cust := v1.Group("/customers")
-	v1Cust.Get("", c.RetrieveAllCustomers)
+	v1Cust.Get("", middleware.Authorize(accessTokenRepo), c.RetrieveAllCustomers)
 
 	v1Cust.Post("/register", c.RegisterCustomer)
 	v1Cust.Post("/login", c.LoginCustomer)

@@ -22,3 +22,14 @@ func (ac *accessTokenRepo) Store(ctx context.Context, param entity.AccessToken) 
 	}
 	return nil
 }
+
+func (ac *accessTokenRepo) FindOne(param entity.AccessToken) (*entity.AccessToken, error) {
+	var (
+		dest entity.AccessToken
+	)
+	err := ac.db.Where(&param).First(&dest).Error
+	if err == gorm.ErrRecordNotFound {
+		return nil, nil
+	}
+	return &dest, nil
+}
