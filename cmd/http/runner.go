@@ -18,5 +18,6 @@ func Runner() {
 	db := initDBConn.Connect(cfg)
 
 	routes.SetupCustomerRoutes(server, db)
+	routes.SetupCategory(server, db)
 	app.Start()
 }

@@ -5,6 +5,10 @@ import (
 )
 
 type (
+	Paging struct {
+		Limit int `json:"limit"`
+		Page  int `json:"page"`
+	}
 	CustomerRegisterRequest struct {
 		Name     string `json:"name"`
 		Email    string `json:"email"`
@@ -16,7 +20,21 @@ type (
 		Username string `json:"username"`
 		Password string `json:"password"`
 	}
+	ProductCategoryRequest struct {
+		Name string `json:"name"`
+	}
+	ProductCategoryQuery struct {
+		Paging
+		Id   int    `json:"id,omitempty"`
+		Name string `json:"omitempty"`
+	}
 )
+
+func (v ProductCategoryRequest) Validate() error {
+	return validation.ValidateStruct(&v,
+		validation.Field(&v.Name, validation.Required.Error("product name is required")),
+	)
+}
 
 func (v CustomerLoginRequest) Validate() error {
 	return validation.ValidateStruct(&v,
