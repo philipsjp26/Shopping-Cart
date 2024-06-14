@@ -3,6 +3,7 @@ package customers
 import (
 	"context"
 	"go_playground/internal/core/common"
+	"go_playground/internal/core/dto"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2/log"
@@ -22,6 +23,6 @@ func (c *customerService) GetAllCustomer() *common.BaseResponse {
 	}
 	response.Code = http.StatusOK
 	response.Message = "success retrieve customers"
-	response.Data = customers
+	response.Data = dto.EntityToDTOCustomers(customers)
 	return &response
 }
