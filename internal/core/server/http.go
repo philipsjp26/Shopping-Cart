@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"go_playground/internal/infrastructure/config"
 	"log"
 	"time"
@@ -35,7 +36,7 @@ func (h *httpServer) Start() {
 	h.app.Use(recover.New())
 	h.app.Use(helmet.New())
 
-	err := h.app.Listen(h.config.App.Port)
+	err := h.app.Listen(fmt.Sprintf(":%v", h.config.App.Port))
 	if err != nil {
 		log.Fatalf("Cannot server server ... %v", err)
 	}

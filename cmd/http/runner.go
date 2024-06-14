@@ -1,27 +1,22 @@
 package http
 
 import (
+	"go_playground/internal/core/routes"
 	"go_playground/internal/core/server"
 
 	"go_playground/internal/infrastructure/config"
-	"go_playground/internal/infrastructure/repository"
+	"go_playground/internal/infrastructure/database"
 )
 
 func Runner() {
 	cfg := config.Configuration()
 
-	app, _ := server.NewHttpServer(cfg)
+	app, server := server.NewHttpServer(cfg)
 
 	// Initialize db sql connection
-	initDBConn := repository.NewDBGetConnection(cfg.Database.Driver)
-	_ = initDBConn.Connect(cfg)
+	initDBConn := database.NewDBGetConnection(cfg.Database.Driver)
+	db := initDBConn.Connect(cfg)
 
-	// /* Create the service from usecase */
-	// livenessPort := usecase.NewLivenessService()
-
-	// /* Mount primary adapter */
-	// routes := http.NewBaseController(server, livenessPort)
-	// routes.InitRouter()
-
+	routes.SetupCustomerRoutes(server, db)
 	app.Start()
 }

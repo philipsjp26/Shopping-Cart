@@ -3,9 +3,13 @@ module go_playground
 go 1.21.1
 
 require (
+	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
 	github.com/gofiber/fiber/v2 v2.52.0
+	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/lib/pq v1.0.0
 	github.com/pressly/goose/v3 v3.17.0
 	github.com/spf13/cobra v1.8.0
+	golang.org/x/crypto v0.21.0
 	gopkg.in/yaml.v3 v3.0.1
 	gorm.io/driver/clickhouse v0.6.1
 	gorm.io/driver/mysql v1.5.6
@@ -47,8 +51,8 @@ require (
 	go.opentelemetry.io/otel v1.26.0 // indirect
 	go.opentelemetry.io/otel/trace v1.26.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/tools v0.17.0 // indirect
 )

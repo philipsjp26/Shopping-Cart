@@ -5,7 +5,8 @@ package usecase
 
 import (
 	"go_playground/internal/core/common"
-	"go_playground/internal/core/model/response"
+	"net/http"
+
 	"go_playground/internal/core/port/service"
 )
 
@@ -16,6 +17,11 @@ func NewLivenessService() service.LivenessService {
 	return &livenesService{}
 }
 
-func (s *livenesService) GetLiveness() *response.BaseResponse {
-	return response.NewSuccessResponse(nil, common.SuccessLiveness)
+func (s *livenesService) GetLiveness() *common.BaseResponse {
+	var (
+		res common.BaseResponse
+	)
+	res.Code = http.StatusOK
+	res.Message = "healthy .."
+	return &res
 }

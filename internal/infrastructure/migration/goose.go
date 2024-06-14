@@ -8,6 +8,8 @@ import (
 	"log"
 	"os"
 
+	_ "github.com/lib/pq"
+
 	"github.com/pressly/goose/v3"
 )
 
@@ -71,6 +73,10 @@ func DatabaseMigration(cfg *config.Config) {
 	}
 }
 func dsn(c *config.Config) string {
+	if c.Database.Driver == "postgres" {
+		return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", c.Database.Host, c.Database.Username, c.Database.Password, c.Database.Name, c.Database.Port)
+
+	}
 	return fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", c.Database.Username, c.Database.Password, c.Database.Host, c.Database.Port, c.Database.Name)
 }
 

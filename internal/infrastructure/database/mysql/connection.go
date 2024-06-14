@@ -24,7 +24,8 @@ func (m *MySQLConnection) Connect(cfg *config.Config) *gorm.DB {
 		cfg.Database.Timezone,
 	)
 	db, err := gorm.Open(mysql.New(mysql.Config{
-		DSN: dsn,
+		DSN:        dsn,
+		DriverName: "mysql",
 	}), &gorm.Config{})
 	if err != nil {
 		log.Error(err)

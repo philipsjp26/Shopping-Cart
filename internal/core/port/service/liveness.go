@@ -1,7 +1,7 @@
 package service
 
-import "go_playground/internal/core/model/response"
+import "go_playground/internal/core/common"
 
 type LivenessService interface {
-	GetLiveness() *response.BaseResponse
+	GetLiveness() *common.BaseResponse
 }

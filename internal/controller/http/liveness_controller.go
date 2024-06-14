@@ -7,22 +7,16 @@ import (
 )
 
 type baseController struct {
-	app *fiber.App
 	srv service.LivenessService
 }
 
-func NewBaseController(app *fiber.App, service service.LivenessService) *baseController {
+func NewBaseController(service service.LivenessService) *baseController {
 	return &baseController{
-		app: app,
 		srv: service,
 	}
 }
 
-func (l *baseController) InitRouter() {
-
-	api := l.app.Group("/api/")
-	api.Get("liveness", func(c *fiber.Ctx) error {
-		livenessResponse := l.srv.GetLiveness()
-		return c.JSON(livenessResponse)
-	})
+func (c *baseController) HealthCheck(appctx *fiber.Ctx) error {
+	res := c.srv.GetLiveness()
+	return appctx.Status(res.Code).JSON(res)
 }

@@ -9,7 +9,8 @@ import (
 	"go_playground/internal/core/entity"
 )
 
-type UserRepository interface {
-	Store(ctx context.Context) error
-	FindAll(ctx context.Context) ([]entity.Users, error)
+type CustomerRepository interface {
+	FindAll(ctx context.Context) ([]entity.Customers, error)
+	FindOne(ctx context.Context, customer entity.Customers) (*entity.Customers, error)
+	Store(ctx context.Context, customer entity.Customers) error
 }

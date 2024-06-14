@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/driver/postgres"
+	"gorm.io/gorm/logger"
 
 	"gorm.io/gorm"
 )
@@ -23,8 +24,10 @@ func (p *PostgreSQLConnection) Connect(cfg *config.Config) *gorm.DB {
 		cfg.Database.Timezone,
 	)
 	db, err := gorm.Open(postgres.New(postgres.Config{
-		DSN: dsn,
+		DSN:        dsn,
+		DriverName: cfg.Database.Driver,
 	}), &gorm.Config{})
+	db.Logger = logger.Default.LogMode(logger.Info)
 	if err != nil {
 		log.Error(err)
 	}
@@ -37,5 +40,5 @@ func (p *PostgreSQLConnection) Connect(cfg *config.Config) *gorm.DB {
 	sqlDB.SetMaxIdleConns(cfg.Database.MaxIdleConn)
 	sqlDB.SetMaxOpenConns(cfg.Database.MaxOpenConn)
 	sqlDB.SetConnMaxLifetime(time.Duration(cfg.Database.ConnMaxLifetime))
-	return nil
+	return db
 }

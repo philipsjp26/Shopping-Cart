@@ -25,7 +25,7 @@ type Database struct {
 	Name            string `yaml:"name"`
 	Driver          string `yaml:"driver"`
 	Charset         string `yaml:"charset"`
-	Timezone        string `yaml:"timezon"`
+	Timezone        string `yaml:"timezone"`
 	ReadTimeout     int    `yaml:"read_timeout"`
 	WriteTimeout    int    `yaml:"write_timeout"`
 	ConnMaxLifetime int    `yaml:"max_lifetime_conn"`

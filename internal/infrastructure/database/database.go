@@ -1,10 +1,10 @@
-package repository
+package database
 
 import (
 	"go_playground/internal/infrastructure/config"
-	"go_playground/internal/infrastructure/repository/clickhouse"
-	"go_playground/internal/infrastructure/repository/mysql"
-	"go_playground/internal/infrastructure/repository/postgresql"
+	"go_playground/internal/infrastructure/database/clickhouse"
+	"go_playground/internal/infrastructure/database/mysql"
+	"go_playground/internal/infrastructure/database/postgresql"
 
 	"gorm.io/gorm"
 )
