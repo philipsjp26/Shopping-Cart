@@ -35,3 +35,6 @@ docker compose -f deploy/docker-compose.yaml up -d
 | Go | 1.21.1 | &check; |
 | Postgres | 1.16.3 | &check; |
 | Docker | 26.1.3 | &check; |
+
+Database Diagram: 
+![alt text ](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/ERD.png?raw=true)
