@@ -1,0 +1,12 @@
+services:
+  my-app:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    working_dir: /app
+    container_name: be-shopping-cart-dev  
+    network_mode: host
+    volumes:      
+      - ../conf/app.yaml:/app/conf/app.yaml
+    ports:
+      - 3000:3000    
