@@ -52,9 +52,10 @@ func Authorize(repo repository.AccessTokenRepository) fiber.Handler {
 
 		claims, err := jwt.ParseAccessToken(bearer)
 		if err != nil {
+
 			log.Error(err)
-			response.Code = http.StatusNotFound
-			response.Message = "invalid credentials"
+			response.Code = http.StatusUnauthorized
+			response.Message = "unauthorize"
 			return req.Status(response.Code).JSON(response)
 		}
 

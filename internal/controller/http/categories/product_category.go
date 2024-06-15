@@ -29,7 +29,7 @@ func (cc *categoryController) Create(c *fiber.Ctx) error {
 		err      error
 		response common.BaseResponse
 	)
-	param := new(model.Category)
+	param := new(model.CategoryRequest)
 	if err = c.BodyParser(param); err != nil {
 		response.Code = http.StatusBadRequest
 		response.Message = "bad request"

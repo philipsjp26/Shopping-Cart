@@ -9,3 +9,8 @@ const (
 	RespDataNotFound       = "DATA-NOT-FOUND"
 	RespInternalServerEror = "INTERNAL-SERVER-ERROR"
 )
+
+const (
+	Pending  = "pending"
+	Complete = "complete"
+)

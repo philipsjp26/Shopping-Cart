@@ -20,7 +20,7 @@ type (
 		Username string `json:"username"`
 		Password string `json:"password"`
 	}
-	Category struct {
+	CategoryRequest struct {
 		Name string `json:"name"`
 	}
 	ProductCategoryQuery struct {
@@ -35,14 +35,25 @@ type (
 		Quantity    int     `json:"quantity"`
 		Price       float64 `json:"price"`
 	}
+	OrderRequest struct {
+		CartId        int    `json:"cart_id"`
+		PaymentMethod string `json:"payment_method"`
+		CustomerId    int
+	}
 )
 
-func (v Category) Validate() error {
+func (v CategoryRequest) Validate() error {
 	return validation.ValidateStruct(&v,
 		validation.Field(&v.Name, validation.Required.Error("product name is required")),
 	)
 }
 
+func (v OrderRequest) Validate() error {
+	return validation.ValidateStruct(&v,
+		validation.Field(&v.CartId, validation.Required),
+		validation.Field(&v.PaymentMethod, validation.Required, validation.In("cashless", "transfer")),
+	)
+}
 func (v CustomerLoginRequest) Validate() error {
 	return validation.ValidateStruct(&v,
 		validation.Field(&v.Username, validation.Required.Error("username is required")),

@@ -22,6 +22,19 @@ func (cart *cartRepo) Create(param entity.Cart) error {
 
 }
 
+func (cart *cartRepo) FindProductsOfCart(param entity.Cart) ([]entity.ProductsOfCart, error) {
+	var dest []entity.ProductsOfCart
+
+	cols := []string{"p.id as product_id, p.name, p.quantity as stock, p.price , carts.quantity as total_qty"}
+	err := cart.db.Model(&param).Select(cols).
+		Joins("LEFT JOIN products p on p.id = carts.product_id ").
+		Scan(&dest).Error
+	if err != nil {
+		return nil, err
+	}
+	return dest, nil
+}
+
 func (cart *cartRepo) Delete(param *entity.Cart, bulk ...entity.Cart) error {
 	var (
 		err error
@@ -49,13 +62,11 @@ func (cart *cartRepo) BatchCreate(param []entity.Cart) error {
 		return tx.Error
 	}
 
-	// Melakukan operasi create
 	if err := tx.Create(&param).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
 
-	// Commit transaksi jika tidak ada kesalahan
 	if err := tx.Commit().Error; err != nil {
 		tx.Rollback()
 		return err

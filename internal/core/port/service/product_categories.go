@@ -7,7 +7,7 @@ import (
 
 type ProductCategoryServices interface {
 	RetrieveCategories() *common.BaseResponse
-	Create(req model.Category) *common.BaseResponse
+	Create(req model.CategoryRequest) *common.BaseResponse
 	RetrieveProducts(categoryId int) *common.BaseResponse
 	CreateProductsOfCategory(categoryId int, req model.ProductOfCategoryRequest) *common.BaseResponse
 }

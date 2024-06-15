@@ -10,3 +10,11 @@ type Cart struct {
 	CreatedAt      time.Time `json:"created_at"`
 	UpdatedAt      time.Time `json:"updated_at"`
 }
+
+type ProductsOfCart struct {
+	ProductId int
+	Name      string
+	Stock     int
+	Price     float64
+	TotalQty  int
+}

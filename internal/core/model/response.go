@@ -27,4 +27,8 @@ type (
 		Name        string `json:"name"`
 		Description string `json:"Description"`
 	}
+	OrderItemsResponse struct {
+		TransactionId string `json:"transaction_number"`
+		Status        string `json:"status"`
+	}
 )

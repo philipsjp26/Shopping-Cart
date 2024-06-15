@@ -20,7 +20,7 @@ func NewCateogryServices(r repository.ProductCategories, productRepo repository.
 	return &categoryServices{repo: r, repoProduct: productRepo}
 }
 
-func (cs *categoryServices) Create(req model.Category) *common.BaseResponse {
+func (cs *categoryServices) Create(req model.CategoryRequest) *common.BaseResponse {
 	var (
 		baseResponse common.BaseResponse
 	)

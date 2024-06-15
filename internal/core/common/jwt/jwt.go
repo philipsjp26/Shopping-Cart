@@ -44,6 +44,7 @@ func ParseAccessToken(accessToken string) (*Customer, error) {
 		}
 		return []byte("SECRET_KEY"), nil
 	})
+
 	if err != nil {
 		return nil, err
 	}

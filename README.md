@@ -29,6 +29,7 @@ docker compose -f deploy/docker-compose.yaml up -d
 ### Docs
 - [Image registry](https://hub.docker.com/r/philipsjp26/shopping-cart)
 - [ERD Database diagram ](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/ERD.png?raw=true)
+- [Architectural Diagram](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/diagram.png?raw=true)
 
 
 ### Dependencies
