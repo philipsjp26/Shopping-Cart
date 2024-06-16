@@ -29,6 +29,12 @@
     |----------|----------|----------|
     | Content-Type | application/json | - |
     | Authorization | Bearer Token | access token after login |
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|
+    | Content-Type | application/json | - |
+    | Authorization | Bearer Token | access token after login |
 - Description : Create category of product
     ```json
     {
@@ -38,6 +44,12 @@
 
 - Feature name: `Create product`
 - `POST: {{base_url}}/api/v1/category/products`
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|
+    | Content-Type | application/json | - |
+    | Authorization | Bearer Token | access token after login |
 - Description : Create product
     ```json
     {
@@ -67,7 +79,12 @@
     ```
 
 - Feature name: `Show products by category`
-- `POST: {{base_url}}/api/v1/category/products/:category_id`
+- `GET: {{base_url}}/api/v1/category/products/:category_id`
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|    
+    | Authorization | Bearer Token | access token after login |
 - Description : Show all products by category
 - Response : 
     ```json
@@ -91,6 +108,11 @@
 
 - Feature name: `Show list products of customer`
 - `GET: {{base_url}}/api/v1/customers/carts`
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|    
+    | Authorization | Bearer Token | access token after login |
 - Description: `Customers can see a list of products that have been added to the shopping cart`
 - Response: 
     ```json
@@ -130,4 +152,59 @@
 - Description : The customer takes a basket to store their shopping items.
 - `POST: {{base_url}}/api/v1/carts`
 
+- Feature name: `Add products to cart`
+- Headers: 
 
+    | Key | Value | Description |
+    |----------|----------|----------|
+    | Content-Type | application/json | - |
+    | Authorization | Bearer Token | access token after login |
+- Description : The customer takes a products to put into cart.
+- `POST: {{base_url}}/api/v1/carts/:cart_id`
+    ```json
+    {
+        "products": [
+            {
+                "id": 1,
+                "quantity": 10
+            },
+            {
+                "id": 2,
+                "quantity": 10
+            }
+        ]
+    }
+    ```
+
+- Feature name: `Remove items from cart`
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|
+    | Content-Type | application/json | - |
+    | Authorization | Bearer Token | access token after login |
+- Description : The customer can remove product from cart.
+- `POST: {{base_url}}/api/v1/carts/:cart_id`
+    ```json
+    {
+        "cart_id": 1,
+        "product_ids": [
+            2
+        ]
+    }
+    ```
+- Feature name: `Checkout item`
+- Headers: 
+
+    | Key | Value | Description |
+    |----------|----------|----------|
+    | Content-Type | application/json | - |
+    | Authorization | Bearer Token | access token after login |
+- Description : The customer can checkout cart .
+- `POST: {{base_url}}/api/v1/carts/:cart_id`
+    ```json
+    {
+        "cart_id": 13,
+        "payment_method": "transfer"
+    }
+    ```

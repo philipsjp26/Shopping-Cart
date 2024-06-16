@@ -25,13 +25,6 @@ Run using docker:
 ```shell
 docker compose -f deploy/docker-compose.yaml up -d
 ```
-
-### Docs
-- [Image registry](https://hub.docker.com/r/philipsjp26/shopping-cart)
-- [ERD Database diagram ](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/ERD.png?raw=true)
-- [Architectural Diagram](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/diagram.png?raw=true)
-
-
 ### Dependencies
 | Name | Version | Status |
 |----------|----------|----------|
@@ -39,4 +32,10 @@ docker compose -f deploy/docker-compose.yaml up -d
 | Postgres | 1.16.3 | &check; |
 | Docker | 26.1.3 | &check; |
 
-Database Diagram: 
+### Docs
+- [Image registry](https://hub.docker.com/r/philipsjp26/shopping-cart)
+- [ERD Database diagram ](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/ERD.png?raw=true)
+- [Architectural Diagram](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/diagram.png?raw=true)
+- [API Docs ( Postman )](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/diagrams/CollectionShoppingCart.json)
+- [Quick Start API Contract](https://github.com/philipsjp26/Shopping-Cart/blob/master/assets/README.md)
+
